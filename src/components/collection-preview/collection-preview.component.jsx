@@ -1,5 +1,6 @@
 import React from "react";
 import "./collection-preview.styles.scss";
+import CollectionItem from "../collection-item/collection-item.component";
 
 const CollectionPreview = ({ title, items }) => (
   <div className="collection-preview">
@@ -7,19 +8,8 @@ const CollectionPreview = ({ title, items }) => (
     <div className="preview">
       {items
         .filter((item, index) => index < 4)
-        .map(({ id, name, price, imageUrl }) => (
-          <div className="collection-item">
-            <div
-              className="image"
-              style={{
-                backgroundImage: `url(${imageUrl})`,
-              }}
-            ></div>
-            <div className="collection-footer">
-              <span className="name">{name}</span>
-              <span className="price">{price}</span>
-            </div>
-          </div>
+        .map(({ id, ...otherProps }) => (
+          <CollectionItem key={id} {...otherProps} />
         ))}
     </div>
   </div>
