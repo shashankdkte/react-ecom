@@ -14,6 +14,8 @@ import React from "react";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selector";
+import CollectionOverviewComponent from "./components/collection-overview/collection-overview.component";
+import CollectionPage from "./pages/collection/collection.component";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -42,8 +44,9 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/shop" element={<ShopPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop/" element={<CollectionOverviewComponent />} />
+          <Route path="/shop/:categoryId" element={<CollectionPage />} />
           <Route exact path="/checkout" element={<CheckoutPage />} />
           <Route
             exact

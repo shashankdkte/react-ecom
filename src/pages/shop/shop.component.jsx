@@ -1,11 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+const ShopPage = () => {
+  const navigate = useNavigate();
 
-import CollectionOverviewComponent from "../../components/collection-overview/collection-overview.component";
-
-const ShopPage = () => (
-  <div className="shop-page">
-    <CollectionOverviewComponent />
-  </div>
-);
+  return <div className="shop-page"></div>;
+};
 
 export default ShopPage;
