@@ -1,22 +1,32 @@
-import React, { cloneElement } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./collection.styles.scss";
 import { connect } from "react-redux";
 import { selectCollection } from "../../redux/shop/shop.selectors";
-let param = "hats";
-const CollectionPage = ({ collection }) => {
-  console.log(collection);
+import CollectionItemComponent from "../../components/collection-item/collection-item.component";
+//import { useEffect } from "react";
+
+const CollectionPage = ({ shop }) => {
   const params = useParams();
-  param = params.categoryId;
-  console.log(params);
+  const collection = shop.collections[params.categoryId];
+  const { title, items } = collection;
+
   return (
-    <div>
-      <h2>Collection Page</h2>
+    <div className="collection-page">
+      <h2 className="title">{title}</h2>
+      <div className="items">
+        {items.map((item) => (
+          <CollectionItemComponent key={item.id} item={item} />
+        ))}
+      </div>
     </div>
   );
 };
-const mapStateToPros = (state, ownProps) => ({
-  collection: selectCollection(param)(state),
-  // collection: selectCollection(param.categoryId)(state),
-});
+
+const mapStateToPros = (state) => {
+  return {
+    shop: state.shop,
+    // collection: selectCollection(param.categoryId)(state),
+  };
+};
 export default connect(mapStateToPros)(CollectionPage);
