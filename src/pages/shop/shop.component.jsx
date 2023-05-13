@@ -1,8 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-const ShopPage = () => {
-  const navigate = useNavigate();
 
+const ShopPage = () => {
   return <div className="shop-page"></div>;
 };
 
