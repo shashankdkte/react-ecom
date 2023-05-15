@@ -15,6 +15,7 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selector";
 import CollectionOverviewComponent from "./components/collection-overview/collection-overview.component";
 import CollectionPage from "./pages/collection/collection.component";
+import StyledComponent from "./styledComponent";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -38,6 +39,13 @@ class App extends React.Component {
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
+  // render() {
+  //   return (
+  //     <div className="App">
+  //       <StyledComponent />
+  //     </div>
+  //   );
+  // }
   render() {
     return (
       <div className="App">
