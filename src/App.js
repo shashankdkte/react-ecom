@@ -20,6 +20,7 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selector";
 import CollectionOverviewComponent from "./components/collection-overview/collection-overview.component";
 import CollectionPage from "./pages/collection/collection.component";
+import { updateCollections } from "./redux/shop/shop.actions";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -39,15 +40,17 @@ class App extends React.Component {
 
       //console.log(user);
     });
-
     const collectionRef = firestore.collection("collections");
-    collectionRef.onSnapshot(async (snapShot) =>
-      convertCollectionSnapshotToMap(snapShot)
-    );
+    this.unsubScribeSnapShot = collectionRef.onSnapshot(async (snapShot) => {
+      const collectionsMap = convertCollectionSnapshotToMap(snapShot);
+      console.log(collectionsMap);
+      updateCollections(collectionsMap);
+    });
   }
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
+    this.unsubScribeSnapShot();
   }
   // render() {
   //   return (
@@ -86,5 +89,7 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  updateCollections: (collectionsMap) =>
+    dispatch(updateCollections(collectionsMap)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);

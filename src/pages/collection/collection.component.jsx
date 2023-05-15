@@ -8,6 +8,7 @@ import CollectionItemComponent from "../../components/collection-item/collection
 const CollectionPage = ({ shop }) => {
   const params = useParams();
   const collection = shop.collections[params.categoryId];
+  console.log(shop);
   const { title, items } = collection;
 
   return (
