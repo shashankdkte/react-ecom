@@ -22,6 +22,7 @@ import CollectionOverviewComponent from "./components/collection-overview/collec
 import CollectionPage from "./pages/collection/collection.component";
 import { updateCollections } from "./redux/shop/shop.actions";
 import UseStateExample from "./examples/useStateExample";
+import UseEffectExample from "./examples/useEffectExample";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -56,7 +57,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <UseStateExample />
+        <UseEffectExample />
       </div>
     );
   }
