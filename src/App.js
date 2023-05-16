@@ -21,6 +21,7 @@ import { selectCurrentUser } from "./redux/user/user.selector";
 import CollectionOverviewComponent from "./components/collection-overview/collection-overview.component";
 import CollectionPage from "./pages/collection/collection.component";
 import { updateCollections } from "./redux/shop/shop.actions";
+import UseStateExample from "./examples/useStateExample";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -52,37 +53,37 @@ class App extends React.Component {
     this.unsubscribeFromAuth();
     this.unsubScribeSnapShot();
   }
-  // render() {
-  //   return (
-  //     <div className="App">
-  //       <StyledComponent />
-  //     </div>
-  //   );
-  // }
   render() {
     return (
       <div className="App">
-        <Header />
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/shop" element={<CollectionOverviewComponent />} />
-          <Route path="/shop/:categoryId" element={<CollectionPage />} />
-          <Route exact path="/checkout" element={<CheckoutPage />} />
-          <Route
-            exact
-            path="/signin"
-            element={
-              this.props.currentUser ? (
-                <Navigate replace to={"/"} />
-              ) : (
-                <SignInAndSignUpPage />
-              )
-            }
-          />
-        </Routes>
+        <UseStateExample />
       </div>
     );
   }
+  // render() {
+  //   return (
+  //     <div className="App">
+  //       <Header />
+  //       <Routes>
+  //         <Route exact path="/" element={<HomePage />} />
+  //         <Route exact path="/shop" element={<CollectionOverviewComponent />} />
+  //         <Route path="/shop/:categoryId" element={<CollectionPage />} />
+  //         <Route exact path="/checkout" element={<CheckoutPage />} />
+  //         <Route
+  //           exact
+  //           path="/signin"
+  //           element={
+  //             this.props.currentUser ? (
+  //               <Navigate replace to={"/"} />
+  //             ) : (
+  //               <SignInAndSignUpPage />
+  //             )
+  //           }
+  //         />
+  //       </Routes>
+  //     </div>
+  //   );
+  // }
 }
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
